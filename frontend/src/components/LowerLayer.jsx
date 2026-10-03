@@ -1,5 +1,13 @@
+import {useNavigate} from "react-router-dom";
 function LowerLayer({ expenses ,deleteExpanses }) {
-  console.log(expenses);
+ 
+
+  const navigate = useNavigate();
+  
+   
+ 
+     
+  
   return (
     <div className='border-t-1'>
       <p className="text-2xl font-black ml-7">Transactions</p>
@@ -31,7 +39,9 @@ function LowerLayer({ expenses ,deleteExpanses }) {
             </div>
 
             <div className="flex mr-2 m-2">
-              <button className='mr-3 bg-green-700 pl-4 pr-4 pt-2 pb-2 rounded-sm text-white'>Edit</button>
+              <button onClick={()=>{
+                navigate(`/view/${item._id}`);
+              }} className='mr-3 bg-green-700 pl-4 pr-4 pt-2 pb-2 rounded-sm text-white'>View</button>
               <button onClick={()=>{
                  deleteExpanses(item._id);
               }} className='mr-3 bg-red-700 pl-4 pr-4 pt-2 pb-2 rounded-sm text-white'>Delete</button>
