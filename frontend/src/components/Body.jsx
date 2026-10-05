@@ -3,11 +3,12 @@ import UpperLayer from "./UpperLayer";
 import MiddleLayer from "./MiddleLayer";
 import LowerLayer from "./LowerLayer";
 import { useExpanses } from "../hooks/expenses.api.js";
-
+import Chart from "../components/Chart.jsx";
+import Pie from "./Pie.jsx";
 
 function Body() {
   
-  const {expenses , createExpanses ,deleteExpanses  ,summary ,loading } = useExpanses();
+  const {expenses , createExpanses ,deleteExpanses  ,summary ,loading ,categoryData} = useExpanses();
  
 
  
@@ -21,6 +22,8 @@ function Body() {
   return (
     <div>
       <Navbar/>
+      <Chart categoryData={categoryData}/>
+      <Pie/>
       <UpperLayer summary={summary} loading={loading}/>
       <MiddleLayer createExpanses={createExpanses}/>
       <LowerLayer expenses={expenses} deleteExpanses={deleteExpanses}/>

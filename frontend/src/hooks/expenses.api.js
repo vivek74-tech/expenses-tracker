@@ -1,13 +1,20 @@
-import { useState ,useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 export const useExpanses = () => {
-  const [loading , setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [expenses, setExpenses] = useState(null)
   const [summary, setSummary] = useState({});
-
-    const getSummary = async () => {
-      setLoading(true)
+  const [categoryData, setCotegoryData] = useState({
+      foodAmount: 0,
+      travelAmount: 0,
+      shoppingAmount: 0,
+      billsAmount: 0,
+      educationAmount: 0,
+      entertainmentAmount: 0
+    })
+  const getSummary = async () => {
+    setLoading(true)
     try {
 
 
@@ -21,7 +28,7 @@ export const useExpanses = () => {
       console.log(error);
 
 
-    }finally{
+    } finally {
       setLoading(false);
     }
 
@@ -29,14 +36,34 @@ export const useExpanses = () => {
 
   }
 
-    const getAllExpanses = async () => {
+  const categoryAndExpenses = async () => {
+   
+    try {
+      const res = await axios.get("http://localhost:9000/api/v1/expanses/category");
+      setCotegoryData({
+        ...categoryData,
+        foodAmount: res.data.foodAmount,
+        travelAmount: res.data.travelAmount,
+        shoppingAmount: res.data.shoppingAmount,
+        billsAmount: res.data.billsAmount,
+        educationAmount: res.data.educationAmount,
+        entertainmentAmount: res.data.entertainmentAmount,
+      });
+
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const getAllExpanses = async () => {
     try {
 
 
 
       const res = await axios.get("http://localhost:9000/api/v1/expanses/");
       setExpenses(res?.data?.expenses);
-      
+
 
     } catch (error) {
       console.log(error);
@@ -50,8 +77,9 @@ export const useExpanses = () => {
 
       const res = await axios.post("http://localhost:9000/api/v1/expanses/", formData);
 
-     await getAllExpanses();
-     await getSummary();
+      await getAllExpanses();
+      await getSummary();
+      await categoryAndExpenses();
 
     } catch (error) {
       console.log(error);
@@ -69,8 +97,9 @@ export const useExpanses = () => {
 
       console.log(res);
 
-     await getAllExpanses();
-     await getSummary();
+      await getAllExpanses();
+      await getSummary();
+      await categoryAndExpenses();
 
     } catch (error) {
       console.log(error)
@@ -85,13 +114,14 @@ export const useExpanses = () => {
 
 
 
-// only loading par chale ga state change hone aur page render par nahi chale ga
-  useEffect(()=>{
+  // only loading par chale ga state change hone aur page render par nahi chale ga
+  useEffect(() => {
     getAllExpanses()
     getSummary()
-  },[]);
+    categoryAndExpenses()
+  }, []);
 
- 
+
 
 
   return {
@@ -101,7 +131,8 @@ export const useExpanses = () => {
     getAllExpanses,
     getSummary,
     summary,
-    loading
+    loading,
+    categoryData
 
 
 
