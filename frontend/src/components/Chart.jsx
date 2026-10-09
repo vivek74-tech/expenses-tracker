@@ -1,5 +1,5 @@
 import {
-  BarChart,
+ BarChart,
   XAxis,
   YAxis,
   Tooltip,
@@ -16,7 +16,7 @@ function Chart({ categoryData }) {
     educationAmount,
     entertainmentAmount
   } = categoryData;
-console.log(foodAmount);
+// console.log(foodAmount);
   const data = [
     { category: "Food", foodAmount },
     { category: "Travel", travelAmount },

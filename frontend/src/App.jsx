@@ -2,6 +2,8 @@ import Body from "./components/Body";
 import { createBrowserRouter , RouterProvider } from "react-router-dom";
 import View from "./components/View";
 import Update from "./components/Update";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 
 const appRouter = createBrowserRouter([
@@ -16,6 +18,14 @@ const appRouter = createBrowserRouter([
    {
     path:"/update/:id",
     element:<Update/>
+  },
+   {
+    path:"/login",
+    element: <Login/>
+  },
+   {
+    path:"/register",
+    element: <Register/>
   }
 
 ])

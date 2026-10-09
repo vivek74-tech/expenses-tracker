@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useExpansesById } from "../hooks/expenses.api.js";
 import { Link, useParams } from "react-router-dom";
-
+import { useExpanses } from "../hooks/expenses.api.js";
 function Update() {
   const { changeExpanses } = useExpansesById();
   const [title, setTitle] = useState("");
@@ -11,6 +11,7 @@ function Update() {
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const {id}=useParams();
+  const {getSummary} = useExpanses();
   
 
   const submitHandler = (e) => {
@@ -25,7 +26,8 @@ function Update() {
       date
     }
     changeExpanses(id ,formData);
-
+    getSummary();
+    
 
   }
   return (

@@ -5,6 +5,9 @@ import LowerLayer from "./LowerLayer";
 import { useExpanses } from "../hooks/expenses.api.js";
 import Chart from "../components/Chart.jsx";
 import Pie from "./Pie.jsx";
+import BaChart from "./BaChart.jsx";
+
+import LineChar from "./LineChar.jsx";
 
 function Body() {
   
@@ -22,6 +25,8 @@ function Body() {
   return (
     <div>
       <Navbar/>
+      <LineChar/>
+      {/* <BaChart/> */}
       <Chart categoryData={categoryData}/>
       <Pie/>
       <UpperLayer summary={summary} loading={loading}/>
