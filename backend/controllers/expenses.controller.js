@@ -24,7 +24,8 @@ export const createExpanses = async (req, res) => {
     category,
     type,
     description,
-    date
+    date,
+    user:req.user.userId
   });
 
   return res.status(201).json({
@@ -38,7 +39,7 @@ export const createExpanses = async (req, res) => {
 
 export const getAllExpanses = async (req, res) => {
 
-  const expenses = await Expanses.find();
+  const expenses = await Expanses.find({user:req.user.userId});
 
   if (expenses.length == 0) {
     return res.status(404).json({
@@ -56,10 +57,9 @@ export const getAllExpanses = async (req, res) => {
 
 export const getByIdExpanses = async (req, res) => {
 
-  const { id } = req.params;
 
 
-  const expenses = await Expanses.findById(id);
+  const expenses = await Expanses.findById({_id:req.params.id,user:req.user.userId});
   if (!expenses) {
     return res.status(404).json({
       success: false,
@@ -76,10 +76,9 @@ export const getByIdExpanses = async (req, res) => {
 
 export const changeExpanses = async (req, res) => {
 
-  const { id } = req.params;
   const { title, amount, category, type, date, description } = req.body;
 
-  const expenses = await Expanses.findByIdAndUpdate(id, { title, amount, category, type, date, description }, { new: true });
+  const expenses = await Expanses.findByIdAndUpdate({_id:req.params.id,user:req.user.userId}, { title, amount, category, type, date, description }, { new: true });
   if (!expenses) {
     return res.status(404).json({
       success: false,
@@ -96,10 +95,10 @@ export const changeExpanses = async (req, res) => {
 
 export const deleteExpanses = async (req, res) => {
 
-  const { id } = req.params;
+  
 
-
-  const expenses = await Expanses.findByIdAndDelete(id);
+ 
+  const expenses = await Expanses.findByIdAndDelete({_id:req.params.id,user:req.user.userId});
 
   return res.status(200).json({
     success: true,
