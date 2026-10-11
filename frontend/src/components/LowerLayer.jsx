@@ -15,12 +15,12 @@ function LowerLayer({ expenses, deleteExpanses }) {
 
   return (
     <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-      <p className="ml-1 mb-6 text-2xl font-black text-gray-800 sm:ml-7 sm:text-3xl">
+      <p className="mb-6 ml-1 text-2xl font-black text-gray-800 sm:ml-7 sm:text-3xl">
         Transactions
       </p>
 
-      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <label className="rounded-lg bg-gray-100 px-4 py-2 font-semibold text-gray-700 sm:m-4">
+      <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        <label className="px-2 py-2 text-base font-semibold text-gray-700 sm:m-4 sm:text-lg">
           Category
         </label>
 
@@ -28,7 +28,7 @@ function LowerLayer({ expenses, deleteExpanses }) {
           onChange={(e) => setSearch(e.target.value)}
           type="text"
           value={search}
-          className="w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-3 font-medium text-gray-800 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 sm:mr-3 sm:w-100"
+          className="w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-3 font-medium text-gray-800 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 sm:mr-3 sm:w-80"
         />
       </div>
 
@@ -36,7 +36,7 @@ function LowerLayer({ expenses, deleteExpanses }) {
         return (
           <div
             key={item._id}
-            className="mx-auto mb-4 grid max-w-4xl grid-cols-1 gap-3 rounded-xl border border-gray-200 bg-white p-4 shadow-sm transition hover:shadow-md sm:grid-cols-2 sm:gap-4 lg:grid-cols-7 lg:items-center"
+            className="mx-auto mb-4 grid max-w-6xl grid-cols-1 items-center gap-3 rounded-xl border border-gray-200 bg-white p-4 shadow-sm transition hover:shadow-md sm:grid-cols-2 lg:grid-cols-7 lg:gap-4"
           >
             <div className="break-words font-semibold text-gray-800">
               {item.title}
@@ -47,7 +47,7 @@ function LowerLayer({ expenses, deleteExpanses }) {
             </div>
 
             <div>
-              <span className="rounded-full bg-blue-50 px-3 py-1 text-sm font-medium text-blue-700">
+              <span className="inline-block rounded-full bg-blue-50 px-3 py-1 text-sm font-medium text-blue-700">
                 {item.category}
               </span>
             </div>
@@ -72,7 +72,7 @@ function LowerLayer({ expenses, deleteExpanses }) {
               {item.description}
             </div>
 
-            <div className="flex flex-wrap gap-2 sm:col-span-2 lg:col-span-1">
+            <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => {
                   navigate(`/view/${item._id}`);

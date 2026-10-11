@@ -6,7 +6,8 @@ function Navbar() {
   const { userLogout } = useUserAuth();
   const navigate = useNavigate();
 
-  const handlerButton = async () => {
+  const handlerButton = async (e) => {
+    e.preventDefault();
     try {
       await userLogout();
       navigate("/login");

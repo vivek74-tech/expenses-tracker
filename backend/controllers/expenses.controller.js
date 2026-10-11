@@ -1,4 +1,5 @@
 import { Expanses } from "../models/expanses.modes.js";
+import mongoose from "mongoose";
 export const createExpanses = async (req, res) => {
   const { title, amount, category, type, date, description } = req.body;
 
@@ -111,6 +112,11 @@ export const getSummary = async (req, res) => {
 
  try {
    const result = await Expanses.aggregate([
+     {
+        $match: {
+          user: new mongoose.Types.ObjectId(req.user.userId)
+        }
+      },
     {
       $group:{
           _id:"$type",
@@ -154,6 +160,11 @@ export const categoryAndExpenses = async(req , res)=>{
   try {
 
     const categoryWithExpenses  = await Expanses.aggregate([
+       {
+        $match: {
+          user: new mongoose.Types.ObjectId(req.user.userId)
+        }
+      },
       {
         $group:{
              _id:"$category",

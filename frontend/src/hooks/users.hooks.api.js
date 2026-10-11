@@ -30,6 +30,7 @@ export const useUserAuth = () => {
             );
 
             if (res.data.success) {
+                setUser(res.data.user);
                 navigate("/");
             }
         } catch (error) {
