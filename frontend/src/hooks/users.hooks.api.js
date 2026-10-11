@@ -1,6 +1,9 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { useEffect } from "react";
 export const useUserAuth = () => {
+    const { user, setUser } = useAuth();
     const navigate = useNavigate();
 
     const userRegister = async ({ form }) => {
@@ -34,8 +37,30 @@ export const useUserAuth = () => {
         }
     };
 
+  
+
+    const userLogout = async () => {
+        try {
+            const res = await axios.get(
+                "http://localhost:9000/api/v1/users/logout",
+                {
+                    withCredentials: true,
+                },
+            );
+
+            if (res.data.success) {
+                setUser(null);
+            }
+        } catch (error) {
+            console.log(error.response?.data?.message || error.message);
+        }
+    };
+
+    
+
     return {
         userRegister,
         userLogin,
+        userLogout,
     };
 };

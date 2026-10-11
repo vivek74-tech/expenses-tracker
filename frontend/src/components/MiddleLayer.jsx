@@ -1,5 +1,5 @@
-import { useState } from "react";
 
+import { useState } from "react";
 
 function MiddleLayer({ createExpanses }) {
  
@@ -23,27 +23,57 @@ function MiddleLayer({ createExpanses }) {
     }
     
     createExpanses(formData);
-   
   }
 
-
-
-
-
   return (
-    <div className='pb-5'>
-      <p className='text-2xl ml-5 mt-0.5 font-bold '>Add Transaction</p>
-      <div>
-        <form onSubmit={submitHandler} className='grid grid-cols-2 max-w-2xl mx-auto'>
-          <label>Title</label>
-          <input onChange={(e) => setTitle(e.target.value)} type="text" value={title} className='mr-3 bg-gray-200 pl-4 pr-4 pt-2 pb-2 rounded-sm m-2' />
-          <label>Description</label>
-          <textarea onChange={(e) => setDescription(e.target.value)} type="text" value={description} className='mr-3 bg-gray-200 pl-4 pr-4 pt-2 pb-2 rounded-sm m-2' />
+    <div className="px-4 pb-8 pt-5 sm:px-6">
+      <p className="mb-6 ml-1 text-2xl font-bold text-gray-800 sm:text-3xl">
+        Add Transaction
+      </p>
 
-          <label>Amount</label>
-          <input type="number" onChange={(e) => setAmount(e.target.value)} value={amount} className='mr-3 bg-gray-200 pl-4 pr-4 pt-2 pb-2 rounded-sm m-2' />
-          <label >Category</label>
-          <select value={category} onChange={(e) => setCategory(e.target.value)} className='mr-3 bg-gray-200 pl-4 pr-4 pt-2 pb-2 rounded-sm m-2'>
+      <div>
+        <form
+          onSubmit={submitHandler}
+          className="mx-auto grid max-w-2xl grid-cols-1 gap-x-5 gap-y-2 rounded-xl border border-gray-200 bg-white p-5 shadow-md sm:grid-cols-2 sm:p-7"
+        >
+          <label className="self-center text-sm font-semibold text-gray-700">
+            Title
+          </label>
+          <input
+            onChange={(e) => setTitle(e.target.value)}
+            type="text"
+            value={title}
+            className="m-2 rounded-lg border border-gray-300 bg-gray-50 px-4 py-3 text-gray-800 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+          />
+
+          <label className="self-center text-sm font-semibold text-gray-700">
+            Description
+          </label>
+          <textarea
+            onChange={(e) => setDescription(e.target.value)}
+            type="text"
+            value={description}
+            className="m-2 rounded-lg border border-gray-300 bg-gray-50 px-4 py-3 text-gray-800 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+          />
+
+          <label className="self-center text-sm font-semibold text-gray-700">
+            Amount
+          </label>
+          <input
+            type="number"
+            onChange={(e) => setAmount(e.target.value)}
+            value={amount}
+            className="m-2 rounded-lg border border-gray-300 bg-gray-50 px-4 py-3 text-gray-800 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+          />
+
+          <label className="self-center text-sm font-semibold text-gray-700">
+            Category
+          </label>
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="m-2 rounded-lg border border-gray-300 bg-gray-50 px-4 py-3 text-gray-800 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+          >
             <option>Food</option>
             <option>Travel</option>
             <option>Shopping</option>
@@ -51,20 +81,36 @@ function MiddleLayer({ createExpanses }) {
             <option>Education</option>
             <option>Entertainment</option>
             <option>Other</option>
+          </select>
 
-          </select >
-          <label >Type</label>
-          <select value={type} onChange={(e) => setType(e.target.value)} className='mr-3 bg-gray-200 pl-4 pr-4 pt-2 pb-2 rounded-sm m-2'>
+          <label className="self-center text-sm font-semibold text-gray-700">
+            Type
+          </label>
+          <select
+            value={type}
+            onChange={(e) => setType(e.target.value)}
+            className="m-2 rounded-lg border border-gray-300 bg-gray-50 px-4 py-3 text-gray-800 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+          >
             <option>Income</option>
             <option>Expense</option>
           </select>
 
-          <label >Date</label>
-          <input onChange={(e) => setDate(e.target.value)} text="date" value={date} className='mr-3 bg-gray-200 pl-4 pr-4 pt-2 pb-2 rounded-sm'/>
+          <label className="self-center text-sm font-semibold text-gray-700">
+            Date
+          </label>
+          <input
+            onChange={(e) => setDate(e.target.value)}
+            text="date"
+            value={date}
+            className="m-2 rounded-lg border border-gray-300 bg-gray-50 px-4 py-3 text-gray-800 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+          />
 
-          <button type="submit" className='m-4 bg-gray-700 pl-4 pr-4 pt-2 pb-2 rounded-sm text-white m-2 max-w-2xl mx-auto'>Add Transaction +</button>
-
-
+          <button
+            type="submit"
+            className="m-2 rounded-lg bg-blue-600 px-5 py-3 font-semibold text-white shadow-sm transition duration-200 hover:bg-blue-700 hover:shadow-md active:scale-95 sm:col-span-2"
+          >
+            Add Transaction +
+          </button>
         </form>
       </div>
     </div>
